@@ -1,0 +1,78 @@
+version: '2'
+
+services:
+  etcd0:
+    image: quay.io/coreos/etcd:latest
+    volumes:
+      - $PWD/data/etcd0:/etcd0.etcd
+      - ./tls/:/etc/ssl/certs
+    environment:
+      - ETCD_NAME=etcd0
+      - ETCD_CLIENT_CERT_AUTH=true
+      - ETCD_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_CERT_FILE=/etc/ssl/certs/etcd0.crt
+      - ETCD_KEY_FILE=/etc/ssl/certs/etcd0.key
+      - ETCD_PEER_CLIENT_CERT_AUTH=true
+      - ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_PEER_CERT_FILE=/etc/ssl/certs/etcd0.crt
+      - ETCD_PEER_KEY_FILE=/etc/ssl/certs/etcd0.key
+
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd0:2380
+      - ETCD_LISTEN_PEER_URLS=https://etcd0:2380
+
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd0:2379
+      - ETCD_LISTEN_CLIENT_URLS=https://etcd0:2379,http://127.0.0.1:2379
+
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+  etcd1:
+    image: quay.io/coreos/etcd:latest
+    volumes:
+      - $PWD/data/etcd0:/etcd0.etcd
+      - ./tls/:/etc/ssl/certs
+    environment:
+      - ETCD_NAME=etcd1
+      - ETCD_CLIENT_CERT_AUTH=true
+      - ETCD_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_CERT_FILE=/etc/ssl/certs/etcd1.crt
+      - ETCD_KEY_FILE=/etc/ssl/certs/etcd1.key
+      - ETCD_PEER_CLIENT_CERT_AUTH=true
+      - ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_PEER_CERT_FILE=/etc/ssl/certs/etcd1.crt
+      - ETCD_PEER_KEY_FILE=/etc/ssl/certs/etcd1.key
+
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd1:2380
+      - ETCD_LISTEN_PEER_URLS=https://etcd1:2380
+
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd1:2379
+      - ETCD_LISTEN_CLIENT_URLS=https://etcd1:2379,http://127.0.0.1:2379
+
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+  etcd2:
+    image: quay.io/coreos/etcd:latest
+    volumes:
+      - $PWD/data/etcd0:/etcd0.etcd
+      - ./tls/:/etc/ssl/certs
+    environment:
+      - ETCD_NAME=etcd2
+      - ETCD_CLIENT_CERT_AUTH=true
+      - ETCD_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_CERT_FILE=/etc/ssl/certs/etcd2.crt
+      - ETCD_KEY_FILE=/etc/ssl/certs/etcd2.key
+      - ETCD_PEER_CLIENT_CERT_AUTH=true
+      - ETCD_PEER_TRUSTED_CA_FILE=/etc/ssl/certs/rootCA.crt
+      - ETCD_PEER_CERT_FILE=/etc/ssl/certs/etcd2.crt
+      - ETCD_PEER_KEY_FILE=/etc/ssl/certs/etcd2.key
+
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=https://etcd2:2380
+      - ETCD_LISTEN_PEER_URLS=https://etcd2:2380
+
+      - ETCD_ADVERTISE_CLIENT_URLS=https://etcd2:2379
+      - ETCD_LISTEN_CLIENT_URLS=https://etcd2:2379,http://127.0.0.1:2379
+
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+      - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
