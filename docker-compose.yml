@@ -29,7 +29,7 @@ services:
   etcd1:
     image: quay.io/coreos/etcd:latest
     volumes:
-      - $PWD/data/etcd0:/etcd0.etcd
+      - $PWD/data/etcd1:/etcd1.etcd
       - ./tls/:/etc/ssl/certs
     environment:
       - ETCD_NAME=etcd1
@@ -54,7 +54,7 @@ services:
   etcd2:
     image: quay.io/coreos/etcd:latest
     volumes:
-      - $PWD/data/etcd0:/etcd0.etcd
+      - $PWD/data/etcd2:/etcd2.etcd
       - ./tls/:/etc/ssl/certs
     environment:
       - ETCD_NAME=etcd2
