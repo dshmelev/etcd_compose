@@ -26,6 +26,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
       - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCDCTL_API=3
   etcd1:
     image: quay.io/coreos/etcd:latest
     volumes:
@@ -51,6 +52,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
       - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCDCTL_API=3
   etcd2:
     image: quay.io/coreos/etcd:latest
     volumes:
@@ -76,3 +78,4 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
       - ETCD_INITIAL_CLUSTER=etcd0=https://etcd0:2380,etcd1=https://etcd1:2380,etcd2=https://etcd2:2380
+      - ETCDCTL_API=3
